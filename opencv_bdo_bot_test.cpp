@@ -1,13 +1,24 @@
+/*
+
+BDO oyunu için VC++ ile test amaçlı opencv Template Matching yardımı ile bot yazılımı geliştirme.
+Ekran görüntüsünü kaydeder ve üzerinde görüntü araması yapar eşiğin üzerinde bir eşleşme ise klavye ve mause komutları gönderir.
+
+OPENCV KURMA ve Visual Studio Ekleme Yardımı:
+
+http://www.eprogramci.com/c-ile-goruntu-isleme-dersleri-opencv/			//1. ve 2. dersler
+
+*/
+
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
 #include <stdio.h>
-#include <Windows.h>	//Mause i�in
+#include <Windows.h>	//Mause için
 #include <winuser.h>
 #include <windef.h>
 #include <atlimage.h> 
 #include <Gdiplusimaging.h> 
-#include <string> //dOUBLE to STr i�n
+#include <string> //dOUBLE to STr içn
 
 
 using namespace std;
@@ -31,7 +42,7 @@ Mat hwnd2mat(HWND hwnd);
 BOOL IsElevated();
 //--------------------------------------------
 
-//------------- GLOBAL De�i�kenlerimiz -------------
+//------------- GLOBAL Deðiþkenlerimiz -------------
 Point matchLoc;	//GLOBAL BULUNAN KORDINAT
 Mat img_display;	//RESMIMIZ
 char GAMEWINDOWNAME[] = "BLACK DESERT - 283814";
@@ -59,7 +70,7 @@ int main(int argc, char** argv)																		// MAIN FUNCTION
 		Sleep(200);
 	}
 	else {
-		MessageBox(NULL, _T("Oyun Bulunamad�"), _T("HATA!"), MB_OK | MB_ICONWARNING);
+		MessageBox(NULL, _T("Oyun Bulunamadý"), _T("HATA!"), MB_OK | MB_ICONWARNING);
 	}
 
 
@@ -68,11 +79,11 @@ int main(int argc, char** argv)																		// MAIN FUNCTION
 
 		Sleep(100);
 
-		if (comparewindowname() == 0) {	//E�itse (��nk� e�itse ctrcpy 0 d�nd�r�r)  (Ekan�m�zda oyun etkinse)
+		if (comparewindowname() == 0) {	//Eþitse (Çünkü eþitse ctrcpy 0 döndürür)  (Ekanýmýzda oyun etkinse)
 
 			HWND hwndDesktop = GetDesktopWindow();
-			ekrangoruntusu = hwnd2mat(hwndDesktop);	//HWND yi OPENCV i�in MAP a �evir + ( imread() de zaten dosyay� map yap�yor ) (AMA BU 24 YANI 8UC4 TIPINDE SAVE LIYOR img.type(); ile ��renilebiliriz onu 16 ya yani 8UC3 e �eviriyoruz)
-											//img.convertTo(img, CV_8UC3);	// BU FONKSIYON �EV�RMEDI
+			ekrangoruntusu = hwnd2mat(hwndDesktop);	//HWND yi OPENCV için MAP a çevir + ( imread() de zaten dosyayý map yapýyor ) (AMA BU 24 YANI 8UC4 TIPINDE SAVE LIYOR img.type(); ile öðrenilebiliriz onu 16 ya yani 8UC3 e çeviriyoruz)
+											//img.convertTo(img, CV_8UC3);	// BU FONKSIYON ÇEVÝRMEDI
 											//cvtColor(src, dst, CV_BGR2BGRA);	//TAM TERSI
 			cvtColor(ekrangoruntusu, ekrangoruntusu, CV_BGRA2BGR);//LAZIM ULAN 8UC4 to 8UC3 (UYGUN TIPE CEVIRIYOR)
 
@@ -82,7 +93,7 @@ int main(int argc, char** argv)																		// MAIN FUNCTION
 
 			double bulundumu = MatchingMethod(0, 0);	//Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED
 
-			if (bulundumu >= 0.8) {	//E�LE�ME Y�KSEKSE
+			if (bulundumu >= 0.8) {	//EÞLEÞME YÜKSEKSE
 				//SetCursorPos((matchLoc.x + aranan.cols / 2), (matchLoc.y + aranan.rows / 2));
 				//LeftClick();
 				spacebas();
@@ -124,7 +135,7 @@ BOOL IsElevated() {
 
 void spacebas() {
 
-	//------------------------ TU�A BAS ------------------------
+	//------------------------ TUÞA BAS ------------------------
 	INPUT input;
 	WORD vkey = VK_SPACE; // see link below (https://docs.microsoft.com/tr-tr/windows/desktop/inputdev/virtual-key-codes)
 	input.type = INPUT_KEYBOARD;
