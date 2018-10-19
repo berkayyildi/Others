@@ -1,0 +1,1 @@
+alias ll='f(){ lex $1 && cc lex.yy.c -o example1 -lfl && ./example1 $2; unset -f f; }; f'
