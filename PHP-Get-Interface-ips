@@ -1,0 +1,10 @@
+<?php
+$interface_ip_array = array();
+$interface_ips = shell_exec("ifconfig | grep 'inet ' | grep -v '127.0.0.1' | awk '{ print $2}' ");
+$interface_ips = trim($interface_ips);
+$inet_ips = explode("\n", $interface_ips);
+foreach($inet_ips as $ip) {    
+    $interface_ip_array[] = $ip;
+}
+print_r($interface_ip_array);
+?>
