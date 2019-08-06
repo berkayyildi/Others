@@ -1,5 +1,4 @@
 <?php
-xdebug_disable();
 
 function parseUrl($url, $decode = false){
     $parameters = array();
