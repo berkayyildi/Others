@@ -1,0 +1,32 @@
+<?php
+xdebug_disable();
+
+function parseUrl($url, $decode = false){
+    $parameters = array();
+    $urlData = parse_url($url);
+    if (empty($urlData['query'])) { return null; }
+    $query = explode("&", $urlData['query']);
+    $parameters = array();
+    foreach($query as $parameter) {
+        $param = explode("=", $parameter);
+        $parameters[] = $param[0];
+    }
+    return $parameters;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $actual_link = "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+    $params = parseUrl($actual_link);
+}else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $post_string = file_get_contents('php://input');
+    $actual_link = "http://{$_SERVER['HTTP_HOST']}?" . $post_string;
+    $params = parseUrl($actual_link);
+}
+
+if(count(@array_unique($params))<count($params)){
+    die("HPP DETECTED!");
+}else{
+    echo "OK!";
+}
+
+?>
