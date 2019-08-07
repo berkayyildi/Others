@@ -10,7 +10,7 @@ def get_query_field(url, field):
     except KeyError:
         return []
         
-mainurl = "http://localhost"
+mainurl = "http://localhost/"
 print("\n\n\n" + ("*" * 150) + "\n---CRAWL : " + mainurl + "---")
 html = urlopen(mainurl) # Insert your URL to extract
 bsObj = BeautifulSoup(html.read(), "html.parser")
@@ -22,7 +22,7 @@ for link in bsObj.find_all('a'):    #Sayfa içindeki her bi url için
     for key in url_params:  #Sayfa içindeki her urlin her parametresi için
         #current_test_key = key
         vulnurl = url + "%26" + key + "=hacked"
-        print("\t\t-------Open HPPed Page and analyze all urls: "+vulnurl)
+        print("\t\t-----HPPed Page and analyze all urls: "+vulnurl)
         html = urlopen(vulnurl) # Insert your URL to extract
         bsObj = BeautifulSoup(html.read(), "html.parser")
         for link in bsObj.find_all('a'):
