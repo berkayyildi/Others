@@ -1,7 +1,7 @@
 
-<a href='http://localhost?redirect=http://localhost/?secret_token=PASSWORD'>Allowed</a>
-<a href='http://localhost?redirect=http://google.com/?secret_token=PASSWORD'>Disallowed</a>
-<a href='http://localhost?redirect=https://google.com?q=PWNED(Check_The_Referer_TAG)&redirect=http://localhost/?secret_token=PASSWORD'>JS HPP</a>
+<a href='?redirect=http://localhost/?secret_token=PASSWORD'>Allowed</a>
+<a href='?redirect=http://google.com/?secret_token=PASSWORD'>Disallowed</a>
+<a href='?redirect=https://google.com?q=PWNED(Check_The_Referer_TAG)&redirect=http://localhost/?secret_token=PASSWORD'>JS HPP</a>
 
 <?php
 if ($_GET['redirect']){
