@@ -1,0 +1,27 @@
+       
+#!/usr/bin/python3
+
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import urllib.parse
+from urllib.parse import urlparse
+
+class RequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        message = "Hello!"
+
+        self.protocol_version = "HTTP/1.1"
+        self.send_response(200)
+        self.end_headers()
+
+        if 'imsi' in self.path:
+          imsi = (str(urllib.parse.parse_qs(urlparse((self.path)).query)['imsi'][0]))
+          message = message + imsi
+
+        self.wfile.write(bytes(message, "utf8"))
+        return
+
+def run():
+    server = ('', 80)
+    httpd = HTTPServer(server, RequestHandler)
+    httpd.serve_forever()
+run()
