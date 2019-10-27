@@ -1,0 +1,16 @@
+curl_setopt($ch, CURLOPT_HEADERFUNCTION, "curlResponseHeaderCallback"); //ADD IT TO CURLOPT
+
+function curlResponseHeaderCallback($ch, $headerLine) {
+    global $cookies;
+    if (preg_match('/^Set-Cookie:\s*([^;]*)/mi', $headerLine, $cookie) == 1){
+			foreach ($cookie as $m) {
+					list($name, $value) = explode('=', $m, 2);
+					$metin= explode(';',$value);	//sadece ilk tarafi al
+					$value = $metin[0];							//sadece ilk tarafi al
+					$cookies[$name]     = $value;
+			}
+		}
+    return strlen($headerLine); // Needed by curl
+}
+
+print_r($cookies);  //PRINT ALL
