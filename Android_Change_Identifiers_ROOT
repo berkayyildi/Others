@@ -1,0 +1,3 @@
+adb pull /system/build.prop # Lots of identical parameters
+adb shell settings get secure android_id # Read Android ID
+adb shell settings set secure android_id xxxxxxxx # Set Android ID
